@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="12dp">
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_profile"
-            android:layout_width="122dp"
-            android:layout_height="122dp"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
             android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,20 +28,31 @@
             android:id="@+id/img_cancel"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/cancel_svg"
             android:padding="14dp"
+            android:src="@drawable/cancel_svg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_gender"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="4dp"
+            android:src="@drawable/male_svg"
+            app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+            app:layout_constraintEnd_toEndOf="@+id/img_profile" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_full_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center"
             android:includeFontPadding="false"
             android:padding="4dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="20dp"
             android:text="Name: "
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,121 +63,309 @@
             android:id="@+id/tv_date_of_birth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:includeFontPadding="false"
-            android:padding="4dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
             android:text="Date of birth: "
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_full_name" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_gender"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:includeFontPadding="false"
-            android:padding="4dp"
-            android:text="Gender: "
-            android:textSize="14sp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_hair_color"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:fontFamily="@font/poppins_medium"
-            android:includeFontPadding="false"
-            android:padding="4dp"
-            android:text="HairColor: "
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_house"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:fontFamily="@font/poppins_medium"
-            android:includeFontPadding="false"
-            android:padding="4dp"
-            android:text="House: "
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hair_color" />
-
+        <!--species-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_species"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_bold"
             android:includeFontPadding="false"
             android:padding="4dp"
             android:text="Species: "
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_species_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_house" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_species_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_species"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_species"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth" />
+
+        <!--brith year-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Brith of year: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_year_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_species" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_year_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_year"
+            app:layout_constraintTop_toBottomOf="@+id/tv_species" />
+
+        <!--Ancestry-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_ancestry"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_bold"
             android:includeFontPadding="false"
             android:padding="4dp"
-            android:text="Species: "
+            android:text="Ancestry: "
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_ancestry_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_species" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_year" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ancestry_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_ancestry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_ancestry"
+            app:layout_constraintTop_toBottomOf="@+id/tv_year" />
+
+        <!--Eye Color-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_eyecolor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Eye Color: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_eyecolor_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ancestry" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_eyecolor_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_eyecolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_eyecolor"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ancestry" />
+
+        <!--hair Color-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hair"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Hair Color: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_haircolor_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_eyecolor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_haircolor_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hair"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_hair"
+            app:layout_constraintTop_toBottomOf="@+id/tv_eyecolor" />
+
+        <!--Patronus-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_patronus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_bold"
             android:includeFontPadding="false"
             android:padding="4dp"
-            android:text="Species: "
+            android:text="Patronus: "
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_patronus_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ancestry" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_wand"
+            android:id="@+id/tv_patronus_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Species "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_patronus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_patronus"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair" />
+
+        <!--hogwartsStudent-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hogwartsStudent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="hogwartsStudent: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_hogwartsStudent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_patronus" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_hogwartsStudent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
             android:padding="4dp"
-            android:text="Species: "
+            android:src="@drawable/wrong_svg"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hogwartsStudent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_hogwartsStudent"
             app:layout_constraintTop_toBottomOf="@+id/tv_patronus" />
+
+        <!--alive-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_alive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Alive: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_alive"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hogwartsStudent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_alive"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:src="@drawable/checkmark_svg"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_alive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_alive"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hogwartsStudent" />
+
+        <!--wizard-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wizard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:text="Wizard: "
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_wizard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_alive" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_wizard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
+            android:padding="4dp"
+            android:src="@drawable/wrong_svg"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_wizard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_wizard"
+            app:layout_constraintTop_toBottomOf="@+id/tv_alive" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

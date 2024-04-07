@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,31 +65,52 @@ class MainActivity : AppCompatActivity() {
         dialogInfo.window?.attributes?.windowAnimations = R.style.animation
         val btnCancel=dialogInfo.findViewById<ImageView>(R.id.img_cancel)
         val imgProfile=dialogInfo.findViewById<ImageView>(R.id.img_profile)
+        val gender=dialogInfo.findViewById<ImageView>(R.id.img_gender)
+        val hogwartsStudent=dialogInfo.findViewById<ImageView>(R.id.img_hogwartsStudent)
+        val alive=dialogInfo.findViewById<ImageView>(R.id.img_alive)
+        val wizrd=dialogInfo.findViewById<ImageView>(R.id.img_wizard)
 
         val fullName=dialogInfo.findViewById<TextView>(R.id.tv_full_name)
         val dateOfBirth=dialogInfo.findViewById<TextView>(R.id.tv_date_of_birth)
-        val gender=dialogInfo.findViewById<TextView>(R.id.tv_gender)
-        val hairColor=dialogInfo.findViewById<TextView>(R.id.tv_hair_color)
-        val house=dialogInfo.findViewById<TextView>(R.id.tv_house)
-        val species=dialogInfo.findViewById<TextView>(R.id.tv_species)
-        val ancestry=dialogInfo.findViewById<TextView>(R.id.tv_ancestry)
-        val patronus=dialogInfo.findViewById<TextView>(R.id.tv_patronus)
-        val wand=dialogInfo.findViewById<TextView>(R.id.tv_wand)
+
+        val hairColor=dialogInfo.findViewById<TextView>(R.id.tv_haircolor_value)
+        val species=dialogInfo.findViewById<TextView>(R.id.tv_species_value)
+        val ancestry=dialogInfo.findViewById<TextView>(R.id.tv_ancestry_value)
+        val patronus=dialogInfo.findViewById<TextView>(R.id.tv_patronus_value)
+        val eyeColor=dialogInfo.findViewById<TextView>(R.id.tv_eyecolor_value)
 
         btnCancel.setOnClickListener {
             dialogInfo.dismiss()
         }
 
         Glide.with(this).load(item.image).error(R.drawable.profile).placeholder(R.drawable.profile).into(imgProfile)
-        fullName.text = "Name: ${item.name?:""}"
-        dateOfBirth.text="Date Of Birth: ${item.dateOfBirth?:""}"
-        gender.text="Gender: ${item.gender?:""}"
-        hairColor.text="Hair Color: ${item.hairColour?:""}"
-        house.text="House: ${item.house?:""}"
-        species.text="Species: ${item.species?:""}"
-        ancestry.text="Ancestry: ${item.ancestry?:""}"
-        patronus.text="Patronus: ${item.patronus?:""}"
-        wand.text="Eye Color: ${item.eyeColour?:""}"
+
+        if (!gender.isVisible)gender.visibility=View.VISIBLE
+        when(item.gender){
+            "male"->  Glide.with(this).load(R.drawable.male_svg).error(R.drawable.ic_launcher_foreground).into(gender)
+            "female"-> Glide.with(this).load(R.drawable.female_svg).error(R.drawable.ic_launcher_foreground).into(gender)
+            "others"-> Glide.with(this).load(R.drawable.transgender_svg).error(R.drawable.ic_launcher_foreground).into(gender)
+            else-> gender.visibility=View.GONE
+        }
+        fullName.text =item.name?:""
+
+        dateOfBirth.text=item.dateOfBirth?:""
+        hairColor.text=item.hairColour?:""
+        species.text=item.species?:""
+        ancestry.text=item.ancestry?:""
+        patronus.text=item.patronus?:""
+        eyeColor.text=item.eyeColour?:""
+        if (item.hogwartsStudent==true){
+            Glide.with(this).load(R.drawable.checkmark_svg).error(R.drawable.ic_launcher_foreground).into(hogwartsStudent)
+        }else Glide.with(this).load(R.drawable.wrong_svg).error(R.drawable.ic_launcher_foreground).into(hogwartsStudent)
+
+        if (item.alive==true){
+            Glide.with(this).load(R.drawable.checkmark_svg).error(R.drawable.ic_launcher_foreground).into(alive)
+        }else Glide.with(this).load(R.drawable.wrong_svg).error(R.drawable.ic_launcher_foreground).into(alive)
+
+        if (item.wizard==true){
+            Glide.with(this).load(R.drawable.checkmark_svg).error(R.drawable.ic_launcher_foreground).into(wizrd)
+        }else Glide.with(this).load(R.drawable.wrong_svg).error(R.drawable.ic_launcher_foreground).into(wizrd)
 
         dialogInfo.show()
     }
