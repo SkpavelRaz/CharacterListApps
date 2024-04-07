@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
         dialogInfo.window?.attributes?.windowAnimations = R.style.animation
         val btnCancel=dialogInfo.findViewById<ImageView>(R.id.img_cancel)
         val imgProfile=dialogInfo.findViewById<ImageView>(R.id.img_profile)
-        val fullName=dialogInfo.findViewById<TextView>(R.id.tv_first_name)
+
+        val fullName=dialogInfo.findViewById<TextView>(R.id.tv_full_name)
         val dateOfBirth=dialogInfo.findViewById<TextView>(R.id.tv_date_of_birth)
         val gender=dialogInfo.findViewById<TextView>(R.id.tv_gender)
         val hairColor=dialogInfo.findViewById<TextView>(R.id.tv_hair_color)
@@ -79,15 +80,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         Glide.with(this).load(item.image).error(R.drawable.profile).placeholder(R.drawable.profile).into(imgProfile)
-//        fullName.setText("Name: ${item.name?:""}")
-//        dateOfBirth.text="Date Of Birth: ${item.dateOfBirth?:""}"
-//        gender.text="Gender: ${item.gender?:""}"
-//        hairColor.text="Hair Color: ${item.hairColour?:""}"
-//        house.text="House: ${item.house?:""}"
-//        species.text="Species: ${item.species?:""}"
-//        ancestry.text="Ancestry: ${item.ancestry?:""}"
-//        patronus.text="Patronus: ${item.patronus?:""}"
-//        wand.text=
+        fullName.text = "Name: ${item.name?:""}"
+        dateOfBirth.text="Date Of Birth: ${item.dateOfBirth?:""}"
+        gender.text="Gender: ${item.gender?:""}"
+        hairColor.text="Hair Color: ${item.hairColour?:""}"
+        house.text="House: ${item.house?:""}"
+        species.text="Species: ${item.species?:""}"
+        ancestry.text="Ancestry: ${item.ancestry?:""}"
+        patronus.text="Patronus: ${item.patronus?:""}"
+        wand.text="Eye Color: ${item.eyeColour?:""}"
 
         dialogInfo.show()
     }
