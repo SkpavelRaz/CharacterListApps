@@ -6,6 +6,7 @@
     app:cardUseCompatPadding="true"
     app:cardElevation="2dp"
     app:strokeWidth="2dp"
+    android:id="@+id/card_item"
     app:strokeColor="#ACACAC"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

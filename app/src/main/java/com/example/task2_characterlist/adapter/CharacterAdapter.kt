@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
 import com.example.task2_characterlist.R
 import com.example.task2_characterlist.dataModel.ModelDataClassItem
 
 class CharacterAdapter(
     private val context: Context,
-    private val dataList:MutableList<ModelDataClassItem>
+    private val dataList:MutableList<ModelDataClassItem>,
+    private val clickListener: OnCardClickListener
 ):RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,6 +36,7 @@ class CharacterAdapter(
         private val firstName: TextView = itemView.findViewById(R.id.tv_first_name)
         private val lastName: TextView = itemView.findViewById(R.id.tv_last_name)
         private val imageProfile: ImageView = itemView.findViewById(R.id.img_profile)
+        private val root: CardView = itemView.findViewById(R.id.card_item)
 
         fun bind(data: ModelDataClassItem) {
             val fullName=data.name?.split(" ")
@@ -40,6 +44,14 @@ class CharacterAdapter(
             lastName.text="Last Name: ${fullName?.drop(1)?.joinToString(" ")}"
 
             Glide.with(context).load(data.image).placeholder(R.drawable.profile).error(R.drawable.profile).into(imageProfile)
+
+            root.setOnClickListener {
+                clickListener.onCardClick(data)
+            }
         }
+    }
+
+    interface OnCardClickListener {
+        fun onCardClick(item: ModelDataClassItem)
     }
 }
