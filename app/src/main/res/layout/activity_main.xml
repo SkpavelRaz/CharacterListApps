@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_character"
         android:layout_width="0dp"
@@ -21,4 +23,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="false"
         tools:listitem="@layout/character_item_layout" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/loader"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        style="?android:attr/progressBarStyleLarge"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,18 @@
 package com.example.task2_characterlist
 
 import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,11 +27,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var characterAdapter: CharacterAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var dialogInfo:Dialog
+    private lateinit var progress:ContentLoadingProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerView=findViewById(R.id.rv_character)
+        progress=findViewById(R.id.loader)
+
         dialogInfo= Dialog(this)
 
         //ViewModel
@@ -37,10 +43,10 @@ class MainActivity : AppCompatActivity() {
             if (it != null){
               setAdapter(it)
             }else{
-                Toast.makeText(this,"no data found!!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Please Check Your Internet!!",Toast.LENGTH_SHORT).show()
             }
         })
-        viewModel.makeApiCall()
+        viewModel.makeApiCall(progress)
     }
 
     private fun setAdapter(dataList: MutableList<ModelDataClassItem>) {
@@ -63,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         dialogInfo.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialogInfo.setCancelable(false)
         dialogInfo.window?.attributes?.windowAnimations = R.style.animation
+        dialogInfo.window?.setBackgroundDrawable(ColorDrawable(0x00000000))
         val btnCancel=dialogInfo.findViewById<ImageView>(R.id.img_cancel)
         val imgProfile=dialogInfo.findViewById<ImageView>(R.id.img_profile)
         val gender=dialogInfo.findViewById<ImageView>(R.id.img_gender)

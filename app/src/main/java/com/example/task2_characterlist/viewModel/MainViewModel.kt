@@ -1,5 +1,7 @@
 package com.example.task2_characterlist.viewModel
 
+import android.widget.ProgressBar
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.task2_characterlist.dataModel.ModelDataClassItem
@@ -16,7 +18,8 @@ class MainViewModel:ViewModel() {
         return liveDataList
     }
 
-    fun makeApiCall(){
+    fun makeApiCall(progress: ContentLoadingProgressBar) {
+        progress.show()
         val retroInstance= ApiInstance.buildApi()
         val retroService=retroInstance.create(ApiInterface::class.java)
         val call=retroService.getCharacterList()
@@ -25,11 +28,13 @@ class MainViewModel:ViewModel() {
                 call: Call<MutableList<ModelDataClassItem>>,
                 response: Response<MutableList<ModelDataClassItem>>
             ) {
+                progress.hide()
                 liveDataList.postValue(response.body())
             }
 
             override fun onFailure(call: Call<MutableList<ModelDataClassItem>>, t: Throwable) {
                 liveDataList.postValue(null)
+                progress.hide()
             }
 
         })
